@@ -17,7 +17,7 @@ function Login({ onLogin }) {
         // Simulating login logic
         const userExists = onLogin(email, password);
         if (loginAttempts >= 3) {
-            showErrorMessageAlert('You have been blocked. Please contact support.');
+            showErrorMessageAlert(email + ' have been blocked.');
             return;
         }
         if (userExists) {
@@ -42,7 +42,7 @@ function Login({ onLogin }) {
         setShowErrorAlert(message);
         setTimeout(() => {
           setShowErrorAlert('');
-        }, 3000);
+        }, 2000);
       };
     
       const handleClear = (e) => {
@@ -73,7 +73,7 @@ function Login({ onLogin }) {
         )}
          {loginAttempts >= 3 && (
           <Alert variant="danger" className="mt-3">
-            You have been blocked. Please contact support.
+            You have been blocked!
           </Alert>
         )}
         <Form.Group className="form-group" controlId="formBasicEmail">
