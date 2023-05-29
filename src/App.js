@@ -1,6 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.css";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Register from './Components/register';
 import Login from './Components/login';
 import Header from './Components/header';
@@ -37,17 +37,24 @@ function App() {
     
   ];
   const [users, setUsers] = useState(defaultUsers);
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    setLoggedIn(isLoggedIn);
+  }, []);
   
   const handleLogin = (email, password) => {
     const userExists = users.some((user) => user.email === email && user.password === password);
     if (userExists) {
       setLoggedIn(true);
+      localStorage.setItem('loggedIn', 'true');
       return true;
     } 
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
+    localStorage.setItem('loggedIn', 'false');
   };
 
   const handleSignUp = (newUser) => {
@@ -59,8 +66,8 @@ function App() {
     <div className="App">
       <Router>
         <Header loggedIn={loggedIn} onLogout={handleLogout} />
-        <Routes>
-          <Route exact path="/" element={<Register onSignUp={handleSignUp} />} />
+        <Routes> 
+          <Route exact path="/" element={loggedIn ? <Users users={users} /> : <Register onSignUp={handleSignUp} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/dashboard" element={loggedIn ? <Users users={users} /> : <Login onLogin={handleLogin} />} />
           
