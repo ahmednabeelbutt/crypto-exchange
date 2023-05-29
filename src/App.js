@@ -60,6 +60,7 @@ function App() {
   const handleSignUp = (newUser) => {
     setUsers([...users, newUser]);
     setLoggedIn(true); // Automatically log in the user after sign up
+    localStorage.setItem('loggedIn', 'true');
   };
 
   return (
@@ -67,7 +68,7 @@ function App() {
       <Router>
         <Header loggedIn={loggedIn} onLogout={handleLogout} />
         <Routes> 
-          <Route exact path="/" element={loggedIn ? <Users users={users} /> : <Register onSignUp={handleSignUp} />} />
+          <Route exact path="/" element={loggedIn ? <Users users={users} /> : <Register users={users} onSignUp={handleSignUp} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/dashboard" element={loggedIn ? <Users users={users} /> : <Login onLogin={handleLogin} />} />
           
