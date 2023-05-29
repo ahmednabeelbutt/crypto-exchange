@@ -12,21 +12,7 @@ function Signup({onSignUp}) {
     // const [showErrorAlert, setShowErrorAlert] = useState('');
     const navigate = useNavigate();
     const handleSubmit = (event) => {
-        event.preventDefault();
-        // Handle signup logic here
-
-        // if(title.length < 10) {
-        //     showErrorMessageAlert('Title should be atleast 10 characters.');
-        //     return;
-        // }
-        // if(details.length < 10) {
-        //     showErrorMessageAlert('Detail should be atleast 50 characters.');
-        //     return;
-        // }
-        // addUser({ title, description: details });
-        // handleClear();
-        // showSuccessAlert(true);
-         
+        event.preventDefault();         
    
         // Perform sign-up logic
         const newUser = { name, email, password, address };

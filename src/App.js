@@ -6,7 +6,7 @@ import Login from './Components/login';
 import Header from './Components/header';
 import Footer from './Components/footer';
 import Users from './Components/users';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
 
 function App() {
 
@@ -62,7 +62,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Register onSignUp={handleSignUp} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/dashboard" element={<Users users={users}/>} />
+          <Route path="/dashboard" element={loggedIn ? <Users users={users} /> : <Login onLogin={handleLogin} />} />
+          
         </Routes>
         <Footer />
       </Router>
