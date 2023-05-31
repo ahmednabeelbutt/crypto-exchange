@@ -6,7 +6,8 @@ import Login from './Components/login';
 import Header from './Components/header';
 import Footer from './Components/footer';
 import Users from './Components/users';
-import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
+import Blogs from './Components/blogs';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
   const defaultUsers = [
     {
       name: "Ahmad",
-      email: "ahmadd@gmail.com",
+      email: "ahmad@gmail.com",
       password: "ahmad",
       address:
         "101-B Punjab Society",
@@ -71,7 +72,7 @@ function App() {
           <Route exact path="/" element={loggedIn ? <Users users={users} /> : <Register users={users} onSignUp={handleSignUp} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/dashboard" element={loggedIn ? <Users users={users} /> : <Login onLogin={handleLogin} />} />
-          
+          <Route exact path="/blogs" element={<Blogs />} />
         </Routes>
         <Footer />
       </Router>

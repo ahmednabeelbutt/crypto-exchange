@@ -32,7 +32,7 @@ function Header({ loggedIn, onLogout }) {
                 ) : (
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
                 )}
-                
+                <Nav.Link  href="/blogs">Blogs</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Container>
