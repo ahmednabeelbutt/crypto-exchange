@@ -87,6 +87,7 @@ function Signup({users, onSignUp}) {
                         placeholder="Enter name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
                     />
                 </Form.Group>
                 
@@ -97,6 +98,7 @@ function Signup({users, onSignUp}) {
                         placeholder="Enter email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                     />
                 </Form.Group>
 
@@ -107,6 +109,7 @@ function Signup({users, onSignUp}) {
                         placeholder="Enter password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
                     />
                 </Form.Group>
 
@@ -117,6 +120,7 @@ function Signup({users, onSignUp}) {
                         placeholder="Enter Address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
+                        required
                     />
                 </Form.Group>
 
@@ -125,7 +129,7 @@ function Signup({users, onSignUp}) {
                     <Form.Control 
                         type="file" 
                         placeholder="Uplaod CNIC"
-                        
+                        required
                     />
                 </Form.Group>
 
