@@ -32,7 +32,7 @@ function App() {
     if (userExists) {
       setLoggedIn(true);
       // setloggedInUser(userExists);
-      localStorage.setItem('loggedIn', 'true');
+      // localStorage.setItem('loggedIn', 'true');
       
       // CODE TO SET STATE OF USERS ON LOGIN
       dispatch(setLoggedInUser(userExists));
@@ -43,7 +43,7 @@ function App() {
 
   const handleLogout = () => {
     setLoggedIn(false);
-    localStorage.setItem('loggedIn', 'false');
+    // localStorage.setItem('loggedIn', 'false');
   };
 
   const handleSignUp = (newUser) => {
