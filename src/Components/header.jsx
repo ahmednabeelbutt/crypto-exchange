@@ -36,7 +36,7 @@ function Header({ loggedIn, onLogout }) {
                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                 </>
                 )}
-                
+                <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Container>
