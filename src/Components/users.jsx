@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import ListView from "./list-view";
+import UserView from "./user-view";
 
-function Users({users}) {
-
+function Users({user}) {
   return (
+    
     <>
-      <ListView users={users} />
+      {/* <ListView users={users} /> */}
+      
+      <UserView user={user} />
     </>
   );
 }

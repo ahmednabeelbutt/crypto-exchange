@@ -7,36 +7,19 @@ import Header from './Components/header';
 import Footer from './Components/footer';
 import Users from './Components/users';
 import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
+import CoinsComponent from './Components/my-coins';
+import TransferCoinForm from './Components/transfer-coin-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoggedInUser } from './redux/actions/user-actions';
+import { addUser } from './redux/actions/user-actions';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const defaultUsers = [
-    {
-      name: "Ahmad",
-      email: "ahmad@gmail.com",
-      password: "ahmad",
-      address:
-        "101-B Punjab Society",
-    },
-    {
-      name: "Ali",
-      email: "ali@gmail.com",
-      password: "ali",
-      address:
-        "111-B Punjab Society",
-    },
-    {
-      name: "Waqas",
-      email: "waqas@gmail.com",
-      password: "waqas",
-      address:
-        "121-B Punjab Society",
-    },
-    
-    
-  ];
-  const [users, setUsers] = useState(defaultUsers);
+  const defaultUsers = useSelector((state) => state.usersReducer.users);
+  const loggedInUserInState = useSelector((state) => state.usersReducer.loggedInUser);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
@@ -44,10 +27,15 @@ function App() {
   }, []);
   
   const handleLogin = (email, password) => {
-    const userExists = users.some((user) => user.email === email && user.password === password);
+    const userExists = defaultUsers.find((user) => user.email === email && user.password === password);
     if (userExists) {
       setLoggedIn(true);
+      // setloggedInUser(userExists);
       localStorage.setItem('loggedIn', 'true');
+      
+      // CODE TO SET STATE OF USERS ON LOGIN
+      dispatch(setLoggedInUser(userExists));
+
       return true;
     } 
   };
@@ -58,20 +46,25 @@ function App() {
   };
 
   const handleSignUp = (newUser) => {
-    setUsers([...users, newUser]);
-    setLoggedIn(true); // Automatically log in the user after sign up
-    localStorage.setItem('loggedIn', 'true');
+    dispatch(addUser(newUser));
+    // setloggedInUser(newUser);
+    // setLoggedIn(true); // Automatically log in the user after sign up
+    // localStorage.setItem('loggedIn', 'true');
+    // sendUsersToState(newUser)
   };
+
 
   return (
     <div className="App">
       <Router>
         <Header loggedIn={loggedIn} onLogout={handleLogout} />
         <Routes> 
-          <Route exact path="/" element={loggedIn ? <Users users={users} /> : <Register users={users} onSignUp={handleSignUp} />} />
+          <Route exact path="/" element={loggedIn ? <Users user={loggedInUserInState} /> : <Login onLogin={handleLogin} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/dashboard" element={loggedIn ? <Users users={users} /> : <Login onLogin={handleLogin} />} />
-          
+          <Route path="/dashboard" element={loggedIn ? <Users user={loggedInUserInState} /> : <Login onLogin={handleLogin} />} />
+          <Route path="/register" element={<Register users={defaultUsers} onSignUp={handleSignUp} />} />
+          <Route path="/my-coins" element={loggedIn ? <CoinsComponent user={loggedInUserInState} /> : <Login onLogin={handleLogin} />} />
+          <Route path="/transfer" element={loggedIn ? <TransferCoinForm /> : <Login onLogin={handleLogin} />} />
         </Routes>
         <Footer />
       </Router>

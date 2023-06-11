@@ -35,7 +35,7 @@ function Login({ onLogin }) {
         setTimeout(() => {
           setShowAlert(false);
           navigate('/dashboard');
-        }, 2000);
+        }, 500);
       };
     
       const showErrorMessageAlert = (message) => {

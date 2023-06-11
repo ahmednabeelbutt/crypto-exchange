@@ -18,7 +18,27 @@ function Signup({users, onSignUp}) {
    
         // Perform sign-up logic
 
-        const newUser = { name, email, password, address };
+
+        //DUMMY COINS FOR SIGNUP USER
+        let coinsData = [
+          {
+            coinID: 1,
+            coinName: 'ADA',
+            coinQuantity : 10,
+            coinRate: '10$'
+          },{
+            coinID: 2,
+            coinName: 'BTC',
+            coinQuantity : 10,
+            coinRate: '30K$'
+          },{
+            coinID: 3,
+            coinName: 'SAFEMOON',
+            coinQuantity : 10,
+            coinRate: '5$'
+          }
+        ];
+        const newUser = { name, email, password, address, coinsData };
 
         // Check if the email already exists in the users list
         const existingUser = users.find(user => user.email === email);
@@ -42,8 +62,8 @@ function Signup({users, onSignUp}) {
     setTimeout(() => {
       setShowAlert(false);
        // Redirect to a different page after successful login
-       navigate('/dashboard');
-    }, 2000);
+       navigate('/login');
+    }, 1000);
   };
 
   const showErrorMessageAlert = (message) => {

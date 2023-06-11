@@ -22,15 +22,19 @@ function Header({ loggedIn, onLogout }) {
                 style={{ maxHeight: "100px" }}
                 navbarScroll
                 >
-                <Nav.Link href="/">Home</Nav.Link>
+                
                 <Nav.Link href="#action2">About Us</Nav.Link>
                 {loggedIn ? (
                 <>
-                    <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                    <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                    <Nav.Link as={Link}  to="/my-coins">My Coins</Nav.Link>
                     <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                 </>
                 ) : (
+                <>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                    <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                </>
                 )}
                 
                 </Nav>
