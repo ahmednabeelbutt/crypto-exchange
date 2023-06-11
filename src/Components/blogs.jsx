@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import BlogsTable from "./blogs-table-view";
+import React, { useState, lazy, Suspense } from "react";
+// import BlogsTable from "./blogs-table-view";
+
+//Applied lazy loading to blogs
+const LazyBlogsTable = lazy(() => import('./blogs-table-view'));
 
 function Blog() {
   const defaultBlogs = [
@@ -32,7 +35,9 @@ function Blog() {
 
   return (
     <>
-        <BlogsTable blogs={blogs} handleCreate={handleAddBlog} handleUpdate={handleUpdateBlog} handleDelete={handleDeleteBlog} />
+       <Suspense fallback={<div>Loading...</div>}>
+         <LazyBlogsTable blogs={blogs} handleCreate={handleAddBlog} handleUpdate={handleUpdateBlog} handleDelete={handleDeleteBlog} />
+      </Suspense>
     </>
   );
 }

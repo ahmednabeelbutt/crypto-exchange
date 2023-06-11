@@ -12,7 +12,7 @@ import TransferCoinForm from './Components/transfer-coin-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoggedInUser } from './redux/actions/user-actions';
 import { addUser } from './redux/actions/user-actions';
-import Blog from './Components/blogs';
+import Blogs from './Components/blogs';
 
 function App() {
 
@@ -66,7 +66,7 @@ function App() {
           <Route path="/register" element={<Register users={defaultUsers} onSignUp={handleSignUp} />} />
           <Route path="/my-coins" element={loggedIn ? <CoinsComponent user={loggedInUserInState} /> : <Login onLogin={handleLogin} />} />
           <Route path="/transfer" element={loggedIn ? <TransferCoinForm /> : <Login onLogin={handleLogin} />} />
-          <Route path="/blogs" element={<Blog />} />
+          <Route exact path="/blogs" element={<Blogs />} />
         </Routes>
         <Footer />
       </Router>
