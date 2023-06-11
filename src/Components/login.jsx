@@ -51,7 +51,7 @@ function Login({ onLogin }) {
       };
 
   return (
-    <Form className="form-container mt-5" onSubmit={handleLoginSubmit}>
+    <Form className="form-container mt-5 login-form" onSubmit={handleLoginSubmit}>
         <h1>Log in</h1>
         {showAlert && (
           <Alert

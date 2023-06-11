@@ -67,6 +67,7 @@ function App() {
           <Route path="/my-coins" element={loggedIn ? <CoinsComponent user={loggedInUserInState} /> : <Login onLogin={handleLogin} />} />
           <Route path="/transfer" element={loggedIn ? <TransferCoinForm /> : <Login onLogin={handleLogin} />} />
           <Route exact path="/blogs" element={<Blogs />} />
+          <Route path='*' Component={() => <h1 className="not-found mt-5">ERROR 404 - Not Found</h1>} exact />
         </Routes>
         <Footer />
       </Router>
